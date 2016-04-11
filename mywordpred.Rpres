@@ -1,0 +1,47 @@
+My Rudimentary Word Predictor
+========================================================
+author: Adrian Thong
+date: 8-April-2016
+
+About
+========================================================
+
+"My Rudimentary Word Predictor" app is a simple app that predicts the next possible 5 words based on what you types into the input box, much like the virtual keyboard on mobile devices. Enter part of a sentence in the input box and click on "Run Predict Algorithm" to predict the next word. 
+
+5 possible words will be displayed right below the "Run Predict Algorithm" button. The tab "NGram Result" shows the NGram data after the algorithm has been executed. It shows results from fourgram, trigram, bigram to unigram, in that particular order if data is available. 
+
+
+App Screen
+========================================================
+
+![My Rudimentary Word Predictor](Screen1.PNG)  
+[My Rudimentary Word Predictor App](https://adrianthong.shinyapps.io/MyWordPredictiveApp/)
+
+NGrams 
+========================================================
+
+Bigram, trigram, fourgram and unigram data set was built from 60% the twitter, news and blogs sample data set. To reduce the size of the NGrams data set, NGrams with frequency of 1 has been removed. However, this will reduce the accuracy of the prediction model. 
+
+- Unigram 214,791 features 
+- Bigram 4,251,189 features 
+- Trigram 2,839,929 features 
+- Fourgram 4,323,234 features 
+
+
+
+Prediction Model
+========================================================
+
+The app uses a Stupid Backoff Model on a unigram, bigram, trigram and  fourgram. The model will search from fourgram, trigram to bigram and compile the top results. The results is by NGram and then the Freq of the features or sets of words. The algorithm also takes into consideration partial and complete words. And then looks for either the next word or the completed word. This is to emulate how virtual keyboards work.  
+
+Since the longest NGram that is being used is fourgram, it means the algorithm matches the last 3 words, or 3+1 if the current word is incomplete e.g. "for my next " or "for my next wo". The +1 would generally produce better prediction. 
+
+
+Future Improvements 
+========================================================
+
+Improvement list.
+
+- Speed. However, since it's on shiny, performance is based on several factors like geography, network speed etc. Speed improvement is possible with coding optimization. 
+- Accuracy. Training data set is not very big, hence, the low accuracy. A different prediction model might be better but the data set size will have to be balanced. 
+- User Interface. Nice to have to be able to click on a predicted word and it will show up on the input box. 
